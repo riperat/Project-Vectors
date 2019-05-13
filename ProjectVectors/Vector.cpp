@@ -7,16 +7,16 @@ Vector::Vector()
 	length = 0;
 }
 
-Vector::Vector(double px, double py, double pz){
+Vector::Vector(double px, double py, double pz) {
 	poi.setX(px);
 	poi.setY(py);
 	poi.setZ(pz);
 }
 
 
-Vector::Vector(Point & A, Point & B){
-	
-	
+Vector::Vector(Point & A, Point & B) {
+
+
 	poi.setX(B.getX() - A.getX());
 	poi.setY(B.getY() - A.getY());
 	poi.setZ(B.getZ() - A.getZ());
@@ -42,12 +42,12 @@ void Vector::vLength()
 Vector * Vector::vDirection()
 {
 	//TODO ADD EXCEPTION HANDLING IF LENGTH IS 0 WITH V Length Exception class
-	 
+
 	double uX, uY, uZ;
 	uX = poi.getX() / length;
 	uY = poi.getY() / length;
 	uZ = poi.getZ() / length;
-	Vector unitV(uX,uY,uZ);
+	Vector unitV(uX, uY, uZ);
 	return &unitV;
 }
 
@@ -87,7 +87,7 @@ bool Vector::nullVector()
 bool Vector::vPar(Vector v2)
 {
 	//TODO add vle exception if one of the two vercors are = 0;
-	VectorLengthException z;
+
 
 	Point p = v2.getPoi();
 	double a[3];
@@ -110,6 +110,37 @@ bool Vector::vPar(Vector v2)
 	return false;
 }
 
+
+Vector Vector::operator+(const Vector & v2)
+{
+
+	return Vector(v2.getX() + poi.getX(), v2.getY() + poi.getY(), v2.getY() + poi.getY());
+}
+
+Vector Vector::operator-(const Vector & v2)
+{
+	return Vector(v2.getX() - poi.getX(), v2.getY() - poi.getY(), v2.getY() - poi.getY());
+}
+
+Vector Vector::operator*(const Vector & v2)
+{
+	return Vector(v2.getX() * poi.getX(), v2.getY() * poi.getY(), v2.getY() * poi.getY());
+}
+
+double Vector::getX() const
+{
+	return poi.getX();
+}
+
+double Vector::getY() const
+{
+	return poi.getY();
+}
+
+double Vector::getZ() const
+{
+	return poi.getZ();
+}
 
 Vector::~Vector()
 {
